@@ -12,6 +12,7 @@ using namespace std;
 
 int main () {
     cout << "Welcome to the Final Grade Calulator" << endl;
-    
+    cout << "Enter ";
+
 }
 
