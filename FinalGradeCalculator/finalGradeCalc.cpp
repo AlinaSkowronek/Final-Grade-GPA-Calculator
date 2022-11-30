@@ -11,8 +11,8 @@
 using namespace std;
 
 int main () {
-    cout << "Welcome to the Final Grade Calulator" << endl;
-    cout << "Enter ";
-
+    cout << "\n\nWelcome to the Final Grade Calulator" << endl;
+    cout << "\n\nHere you can calculate the grade needed on your final to achieve" <<
+        " the desried grade in your class!" << endl;
 }
 
