@@ -14,26 +14,15 @@
 
 using namespace std;
 
- // dervived class
- /*class DayTasks : public ToDo {
-    int day;
-    string assignments;
-
-    public:
-        void tasks () {
-            cout << "For December" << day << ", 2022 you have " << assignments <<
-                " due!" << endl;
-        }
- }*/
-
-
 int main () {
 
-    int numTasks = 0;
-    char input;
+    char input;             // Input if user would like to add a task or not
+    char homeInput;         //Input if user wants to return to home screen
+    char taskView;          //Input to see tasks added previously
     ofstream outputFile;
+    ifstream inputFile;
     string taskInput;
-    string day;
+    string day;             // The day the user chooses to add a task to
     int i;
 
     // December Calender
@@ -48,7 +37,7 @@ int main () {
 
     cout << "\n";
     
-    cout << "You have " << numTasks << " tasks for the month of December!" << endl;
+    cout << "Welcome to your calender!" << endl;
         do {
             cout << "\nWould you like to add more tasks Y|N?" << endl;
             cin >> input;
@@ -66,8 +55,26 @@ int main () {
                     outputFile.close();
                     
                     break;
-                }
-                
+                }            
             }
+            else {
+                cout << "Would you like to view tasks due for a certain day?" << endl;
+                cin >> taskView;
+                if (taskView == 'y') {
+                    cout << "What day would you like to look at?" << endl;
+                    cin >> day;
+                    inputFile.open("tasksToDo.txt");
+                    inputFile >> taskInput;
+                    cout << taskInput << endl;
+                    inputFile.close();
+                    
+
+
+                }
+            
+                }
+
         } while (input == 'y');
+
+        
 }
