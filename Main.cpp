@@ -1,12 +1,12 @@
 #include <iostream>
 #include <stdlib.h>
 #include "calender.h"
-#include "finalGradeCalc.h"
+//#include "finalGradeCalc.h"
 
 using namespace std;
 
 void calculateGPA();
-//void finalGradeCalc();
+void finalGradeCalc();
 void calendar();
 
 //base class
@@ -71,7 +71,7 @@ int main()
 sub:
     choiceData1.name();
     choiceData1.openChoices();
-}
+};
 
 void calculateGPA()
 {
@@ -137,36 +137,71 @@ sub:
     }
 }
 
-void finalGradeCalc()
-{
-sub:
-    int inmenu;
-    cout << "\n\nWhat would you like to do: " << endl;
-    cout << "1. Calculate Again" << endl;
-    cout << "2. Go Back to Main Menu" << endl;
-    cout << "3. Exit Program \n\n" << endl;
-    cin >> inmenu;
+void finalGradeCalc() {
+    double currGrade;   // The grade the user currently has in the class
+    double desGrade;    // The desired grade
+    double finalAmt;    // The precentage the final is worth
+    double finalGrade;  // The grade the user needs on the final to get desired grade
+    double decimalAmt;  //Coverting the precent of final weight into a decimal
+    string input;       // users input if they would like to calculate another grade
+    char repChar;
+   
 
-    switch (inmenu)
-    {
-    case 1:
-        finalGradeCalc();
-        break;
-    case 2:
-        main();
-        break;
-    case 3:
-        exit(EXIT_SUCCESS);
+    do {
+        // Introduction
+        cout << "\n\nWelcome to the Final Grade Calulator" << endl;
+        cout << "\n\nHere you can calculate the grade needed on your final to achieve" <<
+            " the desried grade in your class!" << endl;
 
-    default:
-        cout << "\n\nInvalid Input. Please Choose Again: " << endl;
-        goto sub;
-    }
+        // Values inputed for calculation 
+        cout << "\n\nEnter Current Grade: " << endl;
+        cin >> currGrade;
+        cout << "\n\nEnter Desired Grade: " << endl;
+        cin >> desGrade;
+        cout << "\n\nEnter the percentage the final is worth: " << endl;
+        cin >> finalAmt;
+
+        // Calculating the grade needed on the final
+        finalGrade = ((desGrade - (1 - (finalAmt / 100)) * currGrade) / finalAmt) * 100;
+
+        cout << "\n\nYou need a " << finalGrade << " percent on your exam to end with a " 
+        << desGrade << " percent in your class!" << endl; 
+
+        //Asking user if they would like to calculate another grade
+        cout << "\n\nDo you want to calculate another grade? Y|N: ";
+        cin >> input;
+        repChar = tolower(input[0]);
+    } while (repChar == 'y');
+
+    sub:
+        int inmenu;
+        cout << "\n\nWhat would you like to do: " << endl;
+        cout << "1. Calculate Again" << endl;
+        cout << "2. Go Back to Main Menu" << endl;
+        cout << "3. Exit Program \n\n" << endl;
+        cin >> inmenu;
+
+        switch (inmenu)
+        {
+        case 1:
+            finalGradeCalc();
+            break;
+        case 2:
+            main();
+            break;
+        case 3:
+            exit(EXIT_SUCCESS);
+
+        default:
+            cout << "\n\nInvalid Input. Please Choose Again: " << endl;
+            goto sub;
+        }
 
 }
 
 void calendar()
 {
+    calender ();
 sub:
     int inmenu;
     cout << "\n\nPlease Choose" << endl;
@@ -187,4 +222,4 @@ sub:
         cout << "\n\nInvalid Input. Please Choose Again: " << endl;
         goto sub;
     }
-};
+}
