@@ -1,14 +1,63 @@
 #include <iostream>
 #include <stdlib.h>
+#include "calender.h"
+#include "finalGradeCalc.h"
 
 using namespace std;
 
 void calculateGPA();
-void finalGradeCalc();
+//void finalGradeCalc();
 void calendar();
+
+//base class
+class personData {
+    string userName;
+    ofstream outputFile;
+    ifstream inputFile;
+    public:
+        void name() {
+            outputFile.open("UserName.txt");
+            cout << "Enter name here: " << endl;
+            cin >> userName;
+            outputFile << userName << endl;
+            outputFile.close();
+        }
+};
+
+//Derived class
+class choiceData : public personData {
+    int input;
+    public: 
+        void openChoices () {
+            cout << "Please Choose a Student Resource: ";
+            cin >> input;
+            switch (input)
+            {
+            case 1:
+                calculateGPA();
+                break;
+
+            case 2:
+                finalGradeCalc();
+                break;
+            case 3:
+                calendar();
+                break;
+            case 4:
+                exit(EXIT_SUCCESS);
+                break;
+            default:
+                cout << "Invalid input. Please Choose Agian.\n" << endl;
+                //goto sub;
+                break;
+            }
+        }
+};
 
 int main()
 {
+    choiceData choiceData1;
+    
     system("cls");
     int input;
     cout << "                   Student Resources            " << endl;
@@ -20,28 +69,8 @@ int main()
     cout << "                   4. Exit Program" << endl;
     cout << "--------------------------------------------------------------------------" << endl;
 sub:
-    cout << "Please Choose a Student Resource: ";
-    cin >> input;
-    switch (input)
-    {
-    case 1:
-        calculateGPA();
-        break;
-
-    case 2:
-        finalGradeCalc();
-        break;
-    case 3:
-        calendar();
-        break;
-    case 4:
-        exit(EXIT_SUCCESS);
-        break;
-    default:
-        cout << "Invalid input. Please Choose Agian.\n" << endl;
-        goto sub;
-        break;
-    }
+    choiceData1.name();
+    choiceData1.openChoices();
 }
 
 void calculateGPA()
@@ -107,10 +136,9 @@ sub:
         goto sub;
     }
 }
+
 void finalGradeCalc()
 {
-
-
 sub:
     int inmenu;
     cout << "\n\nWhat would you like to do: " << endl;
@@ -139,8 +167,6 @@ sub:
 
 void calendar()
 {
-    
-
 sub:
     int inmenu;
     cout << "\n\nPlease Choose" << endl;
