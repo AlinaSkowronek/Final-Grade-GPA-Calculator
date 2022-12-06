@@ -1,3 +1,26 @@
+/* Final Grade Calculator
+ * Alina Skowronek
+ * 30 November 2022
+ * Purpose:
+ *      Create a program to show the user the grade needed on their final to 
+ *      achieve the desired grade
+ *  1 December  2022
+ *  Modified:
+ *      Added switch statements
+ *  2 December 2022
+ *  Modified:
+ *      Fixed input and output files
+ *  3 December 2022
+ *  Modified: 
+ *      Fixed loops
+ *  5 December 2022
+ *  Modified:
+ *      Added tolower
+ *  6 December 2022
+ *  Modified:
+ *      Fixed cout statements
+*/
+
 #include <iostream>
 #include <string>
 #include <iomanip>
@@ -11,20 +34,27 @@ void calender() {
     char input;             // Input if user would like to add a task or not
     char homeInput;         //Input if user wants to return to home screen
     char taskView;          //Input to see tasks added previously
-    ofstream outputFile1, outputFile2, outputFile3, outputFile4, outputFile5, outputFile6,
-    outputFile7, outputFile8, outputFile9, outputFile10, outputFile11, outputFile12,
-    outputFile13, outputFile14, outputFile15, outputFile16, outputFile17, outputFile18,
+
+    //The file for the tasks user inputs for each day
+    //Note: the number after "output" corresponds with each day of December
+    ofstream outputFile1, outputFile2, outputFile3, outputFile4, outputFile5, outputFile6, 
+    outputFile7, outputFile8, outputFile9, outputFile10, outputFile11, outputFile12,       
+    outputFile13, outputFile14, outputFile15, outputFile16, outputFile17, outputFile18,  
     outputFile19, outputFile20, outputFile21, outputFile22, outputFile23, outputFile24,
     outputFile25, outputFile26, outputFile27, outputFile28, outputFile29, outputFile30,
     outputFile31;
-    ofstream outputName;
-    ifstream inputName;
+   
+    //The file for the tasks user inputs for each day
+    //Note: the number after "output" corresponds with each day of December
     ifstream inputFile1, inputFile2, inputFile3, inputFile4, inputFile5, inputFile6,
     inputFile7, inputFile8, inputFile9, inputFile10, inputFile11, inputFile12,
     inputFile13, inputFile14, inputFile15, inputFile16,inputFile17, inputFile18,
     inputFile19, inputFile20, inputFile21, inputFile22, inputFile23, inputFile24,
     inputFile25, inputFile26, inputFile27, inputFile28, inputFile29, inputFile30,
     inputFile31;
+
+    //The user's input for the tasks they have for each day of the month
+    //Note: the number after "output" corresponds with each day of December
     string taskInput1, taskInput2, taskInput3, taskInput4, taskInput5, taskInput6,
     taskInput7, taskInput8, taskInput9, taskInput10, taskInput11, taskInput12,
     taskInput13, taskInput14, taskInput15, taskInput16, taskInput17, taskInput18,
@@ -32,8 +62,7 @@ void calender() {
     taskInput25, taskInput26, taskInput27, taskInput28, taskInput29, taskInput30,
     taskInput31;
     int day;             // The day the user chooses to add a task to
-    string fileName;
-    string userName;
+    
 
     // December Calender
     cout << "\n\n          December" << endl;
@@ -48,19 +77,23 @@ void calender() {
     cout << "\n";
     
     cout << "Welcome to your calender!" << endl;
-    cout << "Enter your name here: " << endl;
-    cin.ignore();
-    getline(cin, userName);
-    fileName = userName + ".txt";
-    outputName.open(fileName);
+   
+        // Ask user if they woul like to add a task to the calender
         do {
             cout << "\nWould you like to add more tasks Y|N?" << endl;
             cin >> input;
+
+            if (input == 'Y'){
+                input = 'y';
+            }
+
+            // Allows user to add an assignmnet for a certian day
             if (input == 'y') {
 
                 cout << "Enter day that you would like to add an assignment to: " << endl;
                 cin >> day;
 
+                // Files to save assigmnets for each day of the week
                 switch (day) {
                     case 1: 
                     outputFile1.open("Decmber1.txt");
@@ -70,7 +103,6 @@ void calender() {
                     cout << "\nThe task '" << taskInput1 << "' has been added to your planner "
                         << "for December " << day << ", 2022." << endl;
                     outputFile1 << taskInput1 << endl;
-                    outputName << taskInput1 << endl;
                     outputFile1.flush();
                     outputFile1.close();
                     break;
@@ -407,13 +439,22 @@ void calender() {
             }
             else {
 
-                cout << "\n\nWould you like to view tasks due for a certain day?" << endl;
+                // Ask user if they would like to view a task they previously put in for a certain day
+                cout << "\n\nWould you like to view tasks due for a certain day Y|N?" << endl;
                 cin >> taskView;
+
+                 if (taskView == 'Y'){
+                    taskView = 'y';
+                }
+
                 if (taskView == 'y') {
+
                     do {
+                        // Allows user to add an assignmnet for a certian day
                         cout << "\nWhat day would you like to look at?" << endl;
                         cin >> day;
 
+                        // Files to show assigmnets for each day of the week
                         switch (day) {
                             case 1:
                             inputFile1.open("December1.txt");
@@ -421,7 +462,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput1 << "' due!" << endl;
                             inputFile1.close();
-                            cout << "\n\nWould you like to view anymore days? " << endl;
+                            cout << "\n\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -431,7 +472,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput2 << "' due!" << endl;
                             inputFile2.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -441,7 +482,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput3 << "' due!" << endl;
                             inputFile3.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -451,7 +492,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput4 << "' due!" << endl;
                             inputFile4.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -461,7 +502,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput5 << "' due!" << endl;
                             inputFile5.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -471,7 +512,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput6 << "' due!" << endl;
                             inputFile6.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -481,7 +522,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput7 << "' due!" << endl;
                             inputFile7.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -491,7 +532,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput8 << "' due!" << endl;
                             inputFile8.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -501,7 +542,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput9 << "' due!" << endl;
                             inputFile9.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -511,7 +552,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput10 << "' due!" << endl;
                             inputFile10.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -521,7 +562,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput11 << "' due!" << endl;
                             inputFile11.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -531,7 +572,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput12 << "' due!" << endl;
                             inputFile12.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -541,7 +582,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput13 << "' due!" << endl;
                             inputFile13.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -551,7 +592,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput14 << "' due!" << endl;
                             inputFile14.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -561,7 +602,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput15 << "' due!" << endl;
                             inputFile15.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -571,7 +612,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput16 << "' due!" << endl;
                             inputFile16.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -581,7 +622,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput17 << "' due!" << endl;
                             inputFile17.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -591,7 +632,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput18 << "' due!" << endl;
                             inputFile18.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -601,7 +642,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput19 << "' due!" << endl;
                             inputFile19.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -611,7 +652,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput20 << "' due!" << endl;
                             inputFile20.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -621,7 +662,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput21 << "' due!" << endl;
                             inputFile21.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -631,7 +672,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput22 << "' due!" << endl;
                             inputFile22.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -641,7 +682,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput23 << "' due!" << endl;
                             inputFile23.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -651,7 +692,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput24 << "' due!" << endl;
                             inputFile24.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -661,7 +702,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput25 << "' due!" << endl;
                             inputFile25.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -671,7 +712,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput26 << "' due!" << endl;
                             inputFile26.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -681,7 +722,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput27 << "' due!" << endl;
                             inputFile27.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -691,7 +732,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput28 << "' due!" << endl;
                             inputFile28.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -701,7 +742,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput29 << "' due!" << endl;
                             inputFile29.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -711,7 +752,7 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput30 << "' due!" << endl;
                             inputFile30.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+                            cout << "\nWould you like to view any more days Y|N? " << endl;
                             cin >> taskView;
                             break;
 
@@ -721,24 +762,18 @@ void calender() {
                             cout << "\nOn December " << day << ", 2022 you have '" <<
                                 taskInput31 << "' due!" << endl;
                             inputFile31.close();
-                            cout << "\nWould you like to view anymore days? " << endl;
+
+                            cout << "\nWould you like to view any more days Y|N Y|N? " << endl;
                             cin >> taskView;
                             break; 
                         }
-
+                    
                     } while (taskView == 'y');
                 }
             } 
+        // Loop to allow user to view/add assignments for multiple days
         } while (input == 'y');
-        outputName << taskInput1 << taskInput2 << taskInput3 << taskInput4 << taskInput5
-                << taskInput6 << taskInput7 << taskInput8 << taskInput9 << taskInput10
-                << taskInput11 << taskInput12 << taskInput13 << taskInput14 << taskInput15 
-                << taskInput16 << taskInput17 << taskInput18 << taskInput19 << taskInput20
-                << taskInput21 << taskInput22 << taskInput23 << taskInput24 << taskInput25
-                << taskInput26 << taskInput27 << taskInput28 << taskInput29 << taskInput30
-                << taskInput31;
-            outputName.flush();
-            outputName.close();
+        
         
 
         
