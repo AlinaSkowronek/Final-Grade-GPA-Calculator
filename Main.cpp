@@ -1,7 +1,19 @@
+/* Final Grade Calculator
+ * Alina Skowronek, Ainslee Cole
+ * 3 December 2022
+ * Purpose:
+ *      Create homescreen to acess gpa calulator, final grade calculator, and calender
+ *  5 December 2022
+ *  AC Modified: 
+ *      Create homescreen set up, add GPA calulator, inmenu for functions and homescreen
+ *  6 December 2022
+ *  AS Modified:
+ *      Added classes and inhertience, included calender and final grade calculator
+ */
+
 #include <iostream>
 #include <stdlib.h>
 #include "calender.h"
-
 
 using namespace std;
 
@@ -75,42 +87,23 @@ sub:
 
 void calculateGPA()
 {
-    int q;
-    system("cls");
-    cout << "-------------- GPA Calculating -----------------" << endl;
-    cout << " How many subject's points do you want to calculate? : ";
-    cin >> q;
+    int grade = 0;
+		int gradesum = 0;
+		int subjects;
+		system("cls");
+		cout << "------------------ Calculating GPA ------------------" << endl;
+		cout << "How many classes/subjects are you taking: ";
+		cin >> subjects;
+		for (int i = 0; i < subjects; i++) {
+			cout << "\nPlease enter the grades for all classes." << endl;
 
-    float credit[q];
-    float point[q];
-
-    cout << endl;
-    for (int i = 0; i < q; i++)
-    {
-        cout << "Enter the credit for the subject " << i + 1 << ": ";
-        cin >> credit[i];
-        cout << endl;
-        cout << "Enter the point of the subject " << i + 1 << ": ";
-        cin >> point[i];
-        cout << "-----------------------------------\n\n" << endl;
-    }
-
-    float sum = 0;
-    float tot;
-    for (int j = 0; j < q; j++)
-    {
-        tot = credit[j] * point[j];
-        sum = sum + tot;
-    }
-
-    float totCr = 0;
-    for (int k = 0; k < q; k++)
-    {
-        totCr = totCr + credit[k];
-    }
-
-    cout << "\n\n\nTotal Points: " << sum << " . Total Credits: " << totCr << " .Total GPA: " << sum / totCr << " ." << endl;
-
+			cout << "Enter the number corresponding with the Grade for class " << i + 1
+				<< "\nA = 4  B = 3  C = 2  D = 1  F = 0: ";
+			cin >> grade;
+			gradesum += grade;
+		}
+			cout << "Total Grades: " << gradesum << endl;
+			cout << "GPA is: " << gradesum / subjects << endl;
 
 sub:
     int inmenu;
