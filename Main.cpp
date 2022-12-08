@@ -9,11 +9,15 @@
  *  6 December 2022
  *  AS Modified:
  *      Added classes and inhertience, included calender and final grade calculator
+ *  7 December 2022
+ *  AS Modified 2022:
+ *      Added vector to GPA Calculator
  */
 
 #include <iostream>
 #include <stdlib.h>
 #include "calender.h"
+#include <vector>
 
 using namespace std;
 
@@ -88,22 +92,30 @@ sub:
 void calculateGPA()
 {
     int grade = 0;
-		int gradesum = 0;
-		int subjects;
-		system("cls");
-		cout << "------------------ Calculating GPA ------------------" << endl;
-		cout << "How many classes/subjects are you taking: ";
-		cin >> subjects;
-		for (int i = 0; i < subjects; i++) {
-			cout << "\nPlease enter the grades for all classes." << endl;
+    int gradesum = 0;
+    int subjects;
+    vector<int> grades;
 
-			cout << "Enter the number corresponding with the Grade for class " << i + 1
-				<< "\nA = 4  B = 3  C = 2  D = 1  F = 0: ";
-			cin >> grade;
-			gradesum += grade;
-		}
-			cout << "Total Grades: " << gradesum << endl;
-			cout << "GPA is: " << gradesum / subjects << endl;
+    system("cls");
+    cout << "------------------ Calculating GPA ------------------" << endl;
+    cout << "How many classes/subjects are you taking: ";
+    cin >> subjects;
+    for (int i = 0; i < subjects; i++) {
+        cout << "\nPlease enter the grades for all classes." << endl;
+
+        cout << "Enter the number corresponding with the Grade for class " << i + 1
+            << "\nA = 4  B = 3  C = 2  D = 1  F = 0: ";
+        cin >> grade;
+        
+        grades.push_back(grade);
+    }
+
+    for(int g : grades) {
+        gradesum += g;
+    }
+
+    cout << "Total Grades: " << gradesum << endl;
+    cout << "GPA is: " << gradesum / subjects << endl;
 
 sub:
     int inmenu;
